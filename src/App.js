@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import Header from './container/Header';
+import Main from './container/Main';
 import Footer from './container/Footer';
-import WeatherInfo from './WeatherInfo';
 
 class App extends Component {
   render() {
     return (
       <div className="center-align">
         <Header/>
-        <WeatherInfo/>
+        <Main/>
         <Footer/>
       </div>
     );
