@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../CitiesSuggestionBar.css';
+import '../styles/CitiesSuggestionBar.css';
 
 class CitiesSuggestionBar extends Component {
   render() {
