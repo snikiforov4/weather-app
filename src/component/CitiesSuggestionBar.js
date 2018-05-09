@@ -4,7 +4,7 @@ import '../styles/CitiesSuggestionBar.css';
 class CitiesSuggestionBar extends Component {
   render() {
     const cities = this.props.cities.map(cityName =>
-      <a href='#'>{cityName}</a>
+      <a key={cityName} href={`#${cityName}`}>{cityName}</a>
     );
     return (
       <div className="container row">
