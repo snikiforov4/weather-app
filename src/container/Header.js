@@ -6,8 +6,8 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <SearchBar/>
         <CitiesSuggestionBar/>
+        <SearchBar/>
       </header>
     );
   }
