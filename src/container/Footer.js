@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import LastUpdateInfo from './LastUpdateInfo';
+import LastUpdateInfo from '../LastUpdateInfo';
 
 class Footer extends Component {
   render () {

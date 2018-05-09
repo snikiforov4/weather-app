@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Header from './Header';
-import Footer from './Footer';
+import Header from './container/Header';
+import Footer from './container/Footer';
 import WeatherInfo from './WeatherInfo';
 
 class App extends Component {
