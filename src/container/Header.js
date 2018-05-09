@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import CitiesSuggestionBar from '../CitiesSuggestionBar';
-import SearchBar from '../SearchBar';
+import CitiesSuggestionBar from '../component/CitiesSuggestionBar';
+import SearchBar from '../component/SearchBar';
 
 class Header extends Component {
   render() {
