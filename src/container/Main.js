@@ -5,7 +5,7 @@ class Main extends Component {
   render () {
     return (
       <main className="container">
-        <WeatherInfo/>
+        <WeatherInfo cityId="709930"/>
       </main>
     );
   }
