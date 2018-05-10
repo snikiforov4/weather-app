@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
 import CityWeather from './CityWeather';
+import response from '../config/response';
 
 class WeatherInfo extends Component {
   render() {
     return (
       <div>
         {/*TODO the weather for favourite cities*/}
-        {/*TODO the weather for chosen city*/}
+        <div className="row">
+          <div className="col s12 m4">
+            <CityWeather city={response}/>
+          </div>
+        </div>
       </div>
     );
   }
