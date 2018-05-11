@@ -9,13 +9,12 @@ class WeatherInfo extends Component {
   }
 
   componentDidMount() {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?id=${this.props.cityId}&appid=${appId}`, {method: 'GET',})
+    fetch(`https://api.openweathermap.org/data/2.5/weather?id=${this.props.cityId}&appid=${appId}`)
       .then(response => {
         if (response.ok) {
           return response.json();
-        } else {
-          throw Error(`Bad response response=${response}`)
         }
+        throw new Error('Network response was not ok.');
       })
       .then(response => this.setState({city: response}))
       .catch(console.log)
