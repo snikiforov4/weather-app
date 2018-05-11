@@ -9,7 +9,6 @@ class WeatherInfo extends Component {
   }
 
   render() {
-    this.updateCityState();
     const city = this.state.cityWeather ? (
       <div className="col s12 m6">
         <CityWeather weather={this.state.cityWeather}/>
@@ -27,17 +26,27 @@ class WeatherInfo extends Component {
     );
   }
 
-  updateCityState() {
-    if (this.props.city) {
-      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.props.city}&appid=${appId}`)
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error('Network response was not ok.');
-        })
-        .then(response => this.setState({cityWeather: response}))
-        .catch(console.log);
+  static async getDerivedStateFromProps(nextProps, prevState) {
+    const prevCityName = prevState.cityWeather && prevState.cityWeather.name;
+    if (nextProps.city !== prevCityName) {
+      try {
+        const cityWeather = await WeatherInfo.getWeather(nextProps.city);
+        return {cityWeather: cityWeather}
+      } catch (e) {
+        console.log(e);
+        return null
+      }
+    }
+    return null
+  }
+
+  static async getWeather(city) {
+    if (city) {
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${appId}`);
+      if (response.ok) {
+        return await response.json();
+      }
+      throw new Error('Network response was not ok.');
     }
   }
 }
