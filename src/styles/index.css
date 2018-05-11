@@ -1,10 +1,15 @@
+html, body, #root {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+}
+
+header, footer {
+  flex: none;
 }
 
 header {
@@ -15,9 +20,8 @@ main {
   flex: 1 0 auto;
 }
 
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+.site {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }

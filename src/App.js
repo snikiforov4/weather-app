@@ -12,7 +12,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="center-align">
+      <div className="center-align site">
         <Header onCityChoose={this.onCityChoose}/>
         <Main city={this.state.city}/>
         <Footer/>
