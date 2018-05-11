@@ -6,7 +6,7 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <CitiesSuggestionBar cities={['Dnipro', 'Kiev', 'Lviv', 'Kharkiv', 'Odessa']}/>
+        <CitiesSuggestionBar/>
         <SearchBar/>
       </header>
     );

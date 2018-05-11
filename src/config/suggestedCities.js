@@ -1,4 +1,4 @@
-const cityIds = [
+const suggestedCitiesList = [
   {
     "id": 2643743,
     "name": "London",
@@ -37,4 +37,4 @@ const cityIds = [
   },
 ];
 
-export default cityIds;
+export default suggestedCitiesList;
