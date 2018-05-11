@@ -6,7 +6,7 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <CitiesSuggestionBar/>
+        <CitiesSuggestionBar onCityChoose={this.props.onCityChoose}/>
         <SearchBar/>
       </header>
     );

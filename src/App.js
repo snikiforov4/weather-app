@@ -6,18 +6,25 @@ import Footer from './container/Footer';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {city: 'Kiev'};
+    this.state = {city: null};
+    this.onCityChoose = this.onCityChoose.bind(this);
   }
 
   render() {
     return (
       <div className="center-align">
-        <Header/>
+        <Header onCityChoose={this.onCityChoose}/>
         <Main city={this.state.city}/>
         <Footer/>
       </div>
     );
   }
+
+  onCityChoose(e) {
+    e.preventDefault();
+    this.setState({city: e.target.text});
+  }
+
 }
 
 export default App;
