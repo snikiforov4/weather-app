@@ -5,25 +5,25 @@ import appId from '../config/openweathermap';
 class WeatherInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = {city: null};
+    this.state = {cityWeather: null};
   }
 
   componentDidMount() {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?id=${this.props.cityId}&appid=${appId}`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.props.city}&appid=${appId}`)
       .then(response => {
         if (response.ok) {
           return response.json();
         }
         throw new Error('Network response was not ok.');
       })
-      .then(response => this.setState({city: response}))
+      .then(response => this.setState({cityWeather: response}))
       .catch(console.log)
   }
 
   render() {
-    const city = this.state.city ? (
+    const city = this.state.cityWeather ? (
       <div className="col s12 m6">
-        <CityWeather city={this.state.city}/>
+        <CityWeather weather={this.state.cityWeather}/>
       </div>
     ) : null;
     return (
