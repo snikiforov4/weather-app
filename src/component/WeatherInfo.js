@@ -47,9 +47,16 @@ class WeatherInfo extends Component {
   }
 
   onMarkFavorite(cityName) {
-    this.setState({favorite: this.state.favorites.add(cityName)});
-    console.log(this.state.favorites);
-    console.log(`Mark ${cityName} as favorite`);
+    let favorites = this.state.favorites;
+    if (favorites.has(cityName)) {
+      favorites.delete(cityName);
+      console.log(`Remove ${cityName} from favorites`);
+    } else {
+      favorites.add(cityName);
+      console.log(`Mark ${cityName} as favorite`);
+    }
+    this.setState({favorites: favorites});
+    console.log(`List of favorites: ${[...favorites]}`);
   }
 }
 
