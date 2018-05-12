@@ -6,16 +6,17 @@ class WeatherInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cityWeather: null,
+      weatherCache: new Map(),
       favorites: new Set(),
     };
     this.onMarkFavorite = this.onMarkFavorite.bind(this);
   }
 
   render() {
-    const city = this.state.cityWeather ? (
+    const city = this.state.weatherCache.has(this.props.city) ? (
       <div className="col s12 m6">
-        <CityWeather weather={this.state.cityWeather} onMarkFavorite={this.onMarkFavorite}
+        <CityWeather weather={this.state.weatherCache.get(this.props.city)}
+                     onMarkFavorite={this.onMarkFavorite}
                      favorite={this.state.favorites.has(this.props.city)}/>
       </div>
     ) : null;
@@ -32,7 +33,8 @@ class WeatherInfo extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.city !== this.props.city) {
+    const weatherCache = this.state.weatherCache;
+    if (!weatherCache.has(this.props.city)) {
       console.log(`Receive weather for city: ${this.props.city}`);
       fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.props.city}&appid=${appId}`)
         .then(response => {
@@ -41,7 +43,10 @@ class WeatherInfo extends Component {
           }
           throw new Error('Network response was not ok.');
         })
-        .then(response => this.setState({cityWeather: response}))
+        .then(response => {
+          weatherCache.set(this.props.city, response);
+          this.setState({weatherCache: weatherCache});
+        })
         .catch(console.log);
     }
   }
