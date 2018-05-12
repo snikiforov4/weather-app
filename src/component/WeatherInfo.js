@@ -13,19 +13,31 @@ class WeatherInfo extends Component {
   }
 
   render() {
-    const city = this.state.weatherCache.has(this.props.city) ? (
-      <div className="col s12 m6">
-        <CityWeather weather={this.state.weatherCache.get(this.props.city)}
-                     onMarkFavorite={this.onMarkFavorite}
-                     favorite={this.state.favorites.has(this.props.city)}/>
-      </div>
-    ) : null;
+    const cities = [];
+    if (this.state.weatherCache.has(this.props.city) && !this.state.favorites.has(this.props.city)) {
+      cities.push((
+        <div key={this.props.city} className="col s12 m6">
+          <CityWeather weather={this.state.weatherCache.get(this.props.city)}
+                       onMarkFavorite={this.onMarkFavorite}/>
+        </div>
+      ));
+    }
+    for (let favoriteCity of [...this.state.favorites].reverse()) {
+      if (this.state.weatherCache.has(favoriteCity)) {
+        cities.push((
+          <div key={favoriteCity} className="col s12 m6">
+            <CityWeather weather={this.state.weatherCache.get(favoriteCity)}
+                         onMarkFavorite={this.onMarkFavorite}
+                         favorite/>
+          </div>
+        ));
+      }
+    }
     return (
       <div className="row">
         <div className="col s12 m8 offset-m2">
-          {/*TODO the weather for favourite cities*/}
           <div className="row">
-            {city}
+            {cities}
           </div>
         </div>
       </div>
