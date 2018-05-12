@@ -5,13 +5,18 @@ import appId from '../config/openweathermap';
 class WeatherInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = {cityWeather: null};
+    this.state = {
+      cityWeather: null,
+      favorites: new Set(),
+    };
+    this.onMarkFavorite = this.onMarkFavorite.bind(this);
   }
 
   render() {
     const city = this.state.cityWeather ? (
       <div className="col s12 m6">
-        <CityWeather weather={this.state.cityWeather}/>
+        <CityWeather weather={this.state.cityWeather} onMarkFavorite={this.onMarkFavorite}
+                     favorite={this.state.favorites.has(this.props.city)}/>
       </div>
     ) : null;
     return (
@@ -39,6 +44,12 @@ class WeatherInfo extends Component {
         .then(response => this.setState({cityWeather: response}))
         .catch(console.log);
     }
+  }
+
+  onMarkFavorite(cityName) {
+    this.setState({favorite: this.state.favorites.add(cityName)});
+    console.log(this.state.favorites);
+    console.log(`Mark ${cityName} as favorite`);
   }
 }
 

@@ -4,12 +4,16 @@ class CityWeather extends Component {
   render() {
     const weather = this.props.weather;
     const weatherIcon = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
+    const favoriteIcon = this.props.favorite ? 'favorite' : 'favorite_border';
     return (
       <div className="card">
         <div className="card-content">
               <span className="card-title">
                 {weather.name}
-                <i className="material-icons right materialize-red-text">favorite_border</i>
+                <a>
+                  <i className="material-icons right materialize-red-text"
+                     onClick={this.props.onMarkFavorite.bind(this, weather.name)}>{favoriteIcon}</i>
+                </a>
               </span>
           <div className="row">
             <div className="col s2"><img src={weatherIcon} alt="weather icon"/></div>
