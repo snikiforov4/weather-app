@@ -12,6 +12,15 @@ class WeatherInfo extends Component {
     this.onMarkFavorite = this.onMarkFavorite.bind(this);
   }
 
+  componentDidMount() {
+    let favoriteCities = JSON.parse(localStorage.getItem('favorites') || []);
+    console.log(`Favorite cities from storage: ${favoriteCities}`);
+    for (let favoriteCity of favoriteCities) {
+      this.updateWeatherCache(favoriteCity);
+    }
+    this.setState({favorites: new Set(favoriteCities)});
+  }
+
   render() {
     const cities = [];
     if (this.state.weatherCache.has(this.props.city) && !this.state.favorites.has(this.props.city)) {
@@ -44,10 +53,16 @@ class WeatherInfo extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (this.props.city) {
+      this.updateWeatherCache(this.props.city);
+    }
+  }
+
+  updateWeatherCache(cityName) {
     const weatherCache = this.state.weatherCache;
-    if (!weatherCache.has(this.props.city)) {
-      console.log(`Receive weather for city: ${this.props.city}`);
-      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.props.city}&appid=${appId}`)
+    if (!weatherCache.has(cityName)) {
+      console.log(`Receive weather for city: ${cityName}`);
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${appId}`)
         .then(response => {
           if (response.ok) {
             return response.json();
@@ -55,7 +70,7 @@ class WeatherInfo extends Component {
           throw new Error('Network response was not ok.');
         })
         .then(response => {
-          weatherCache.set(this.props.city, response);
+          weatherCache.set(cityName, response);
           this.setState({weatherCache: weatherCache});
         })
         .catch(console.log);
@@ -72,7 +87,9 @@ class WeatherInfo extends Component {
       console.log(`Mark ${cityName} as favorite`);
     }
     this.setState({favorites: favorites});
-    console.log(`List of favorites: ${[...favorites]}`);
+    let favoritesStr = JSON.stringify([...favorites]);
+    localStorage.setItem('favorites', favoritesStr);
+    console.log(`List of favorites: ${favoritesStr}`);
   }
 }
 
