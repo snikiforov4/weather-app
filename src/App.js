@@ -28,8 +28,7 @@ class App extends Component {
 
   onFindCity(e) {
     if (e.key === 'Enter') {
-    // this.setState({city: e.target.text});
-      console.log(e.target.value);
+      this.setState({searchQuery: e.target.value});
     }
   }
 

@@ -10,11 +10,15 @@ class SearchResult extends Component {
     };
   }
 
+  componentDidMount() {
+    this.findCities(this.props.searchQuery);
+  }
+
   render() {
     const cities = [];
     if (this.state.searchResult) {
       for (let cityWeather of this.state.searchResult.list) {
-        cities.push(this.buildCityWeather(cityWeather.name));
+        cities.push(this.buildCityWeather(cityWeather));
       }
     }
     return (
@@ -24,24 +28,26 @@ class SearchResult extends Component {
     );
   }
 
-  buildCityWeather(cityName) {
+  buildCityWeather(cityWeather) {
     return (
-      <div key={cityName} className="col s12 m6">
-        <CityWeather weather={this.getWeatherFromResult(cityName)}
+      <div key={cityWeather.id} className="col s12 m6">
+        <CityWeather weather={cityWeather}
                      onMarkFavorite={function () {}}
                      favorite={false}/>
       </div>
     );
   }
 
-  getWeatherFromResult(cityName) {
-    return {}
-  }
-
   componentDidUpdate(prevProps) {
     const query = this.props.searchQuery;
-    if (query && prevProps.searchQuery !== query) {
-      console.log(`Search query: ${query}`);
+    if (prevProps.searchQuery !== query) {
+      this.findCities(query);
+    }
+  }
+
+  findCities(query) {
+    if (query) {
+      console.log(`Search query: '${query}'`);
       fetch(`https://api.openweathermap.org/data/2.5/find?q=${query}&type=like&sort=population&cnt=4&appid=${appId}`)
         .then(response => {
           if (response.ok) {
@@ -55,7 +61,6 @@ class SearchResult extends Component {
         .catch(console.log);
     }
   }
-
 }
 
 export default SearchResult;
