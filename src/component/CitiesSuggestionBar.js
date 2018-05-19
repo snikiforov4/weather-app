@@ -17,7 +17,7 @@ class CitiesSuggestionBar extends Component {
 
   render() {
     const cities = this.state.cities.map(cityName =>
-      <a key={cityName} onClick={this.props.onCityChoose}>{cityName}</a>
+      <a key={cityName} onClick={this.props.onChooseCity}>{cityName}</a>
     );
     return (
       <div className="container row">
