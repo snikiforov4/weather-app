@@ -19,11 +19,7 @@ class SearchResult extends Component {
     }
     return (
       <div className="row">
-        <div className="col s12 m8 offset-m2">
-          <div className="row">
-            {cities}
-          </div>
-        </div>
+        {cities}
       </div>
     );
   }
