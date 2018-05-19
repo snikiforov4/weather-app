@@ -46,7 +46,7 @@ class SearchResult extends Component {
     const query = this.props.searchQuery;
     if (query && prevProps.searchQuery !== query) {
       console.log(`Search query: ${query}`);
-      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${appId}`) // TODO
+      fetch(`https://api.openweathermap.org/data/2.5/find?q=${query}&type=like&sort=population&cnt=4&appid=${appId}`)
         .then(response => {
           if (response.ok) {
             return response.json();
