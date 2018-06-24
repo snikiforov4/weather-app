@@ -26,7 +26,7 @@ export default class WeatherInfo extends Component {
     if (this.state.weatherCache.has(this.props.city) && !this.state.favorites.has(this.props.city)) {
       cities.push(this.buildCityWeather(this.props.city));
     }
-    for (let favoriteCity of [...this.state.favorites].reverse()) {
+    for (let favoriteCity of this.state.favorites) {
       if (this.state.weatherCache.has(favoriteCity)) {
         cities.push(this.buildCityWeather(favoriteCity));
       }
@@ -83,7 +83,7 @@ export default class WeatherInfo extends Component {
       favorites.delete(cityName);
       console.log(`Remove ${cityName} from favorites`);
     } else {
-      favorites.add(cityName);
+      favorites = new Set([cityName, ...favorites]);
       console.log(`Mark ${cityName} as favorite`);
     }
     this.setState({favorites: favorites});
