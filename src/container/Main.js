@@ -10,7 +10,7 @@ class Main extends Component {
 
   render() {
     return (
-      <main className="container">
+      <main className="main container">
         {this.props.searchQuery &&
         <div className="row">
           <div className="col s12 m8 offset-m2">

@@ -8,15 +8,15 @@ body {
   font-family: sans-serif;
 }
 
-header, footer {
+.header, .footer {
   flex: none;
 }
 
-header {
+.header {
   padding-top: 1em;
 }
 
-main {
+.main {
   flex: 1 0 auto;
 }
 

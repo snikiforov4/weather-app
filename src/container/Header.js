@@ -5,7 +5,7 @@ import SearchBar from '../component/SearchBar';
 class Header extends Component {
   render() {
     return (
-      <header>
+      <header className='header'>
         <CitiesSuggestionBar onChooseCity={this.props.onChooseCity}/>
         <SearchBar onFindCity={this.props.onFindCity}/>
       </header>
