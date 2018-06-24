@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import '../styles/CitiesSuggestionBar.css';
 import suggestedCitiesList from '../config/suggestedCities';
-import shuffle from '../util/array';
+import {shuffle} from '../util/array';
 
-class CitiesSuggestionBar extends Component {
+export default class CitiesSuggestionBar extends Component {
   constructor(props) {
     super(props);
     this.state = {cities: []};
@@ -29,5 +29,3 @@ class CitiesSuggestionBar extends Component {
     );
   }
 }
-
-export default CitiesSuggestionBar;

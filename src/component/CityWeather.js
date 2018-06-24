@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class CityWeather extends Component {
+export default class CityWeather extends Component {
   render() {
     const weather = this.props.weather;
     const weatherIcon = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
@@ -32,5 +32,3 @@ class CityWeather extends Component {
     );
   }
 }
-
-export default CityWeather;

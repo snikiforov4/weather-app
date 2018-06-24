@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import CityWeather from './CityWeather';
 import appId from '../config/openweathermap';
 
-class SearchResult extends Component {
+export default class SearchResult extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,5 +62,3 @@ class SearchResult extends Component {
     }
   }
 }
-
-export default SearchResult;

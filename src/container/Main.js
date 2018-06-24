@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import SearchResult from '../component/SearchResult';
 import WeatherInfo from '../component/WeatherInfo';
 
-class Main extends Component {
+export default class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -23,5 +23,3 @@ class Main extends Component {
     );
   }
 }
-
-export default Main;

@@ -3,7 +3,7 @@ import Header from './container/Header';
 import Main from './container/Main';
 import Footer from './container/Footer';
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {city: null, searchQuery: null};
@@ -31,7 +31,4 @@ class App extends Component {
       this.setState({searchQuery: e.target.value});
     }
   }
-
 }
-
-export default App;

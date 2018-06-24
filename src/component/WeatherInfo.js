@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import CityWeather from './CityWeather';
 import appId from '../config/openweathermap';
 
-class WeatherInfo extends Component {
+export default class WeatherInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -92,5 +92,3 @@ class WeatherInfo extends Component {
     console.log(`List of favorites: ${favoritesStr}`);
   }
 }
-
-export default WeatherInfo;
