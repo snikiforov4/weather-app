@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
+import '../styles/CityWeather.css';
 
 export default class CityWeather extends Component {
   render() {
     const weather = this.props.weather;
-    const weatherIcon = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
     const favoriteIcon = this.props.favorite ? 'favorite' : 'favorite_border';
     const temperatureSign = '\u212A';
     return (
@@ -17,7 +17,7 @@ export default class CityWeather extends Component {
                 </a>
               </span>
           <div className="row">
-            <div className="col s2"><img src={weatherIcon} alt="weather icon"/></div>
+            <div className="col s2"><img className={`i${weather.weather[0].icon}`} alt="weather icon"/></div>
             <div className="col s10 left-align">
               <p className="grey-text text-lighten-1">{weather.weather[0].main}</p>
               <p>{weather.main.temp} {temperatureSign}</p>
