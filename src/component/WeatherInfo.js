@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CityWeather from './CityWeather';
-import appId from '../config/openweathermap';
+import WeatherService from '../service/WeatherService';
 
 export default class WeatherInfo extends Component {
   constructor(props) {
@@ -61,19 +61,11 @@ export default class WeatherInfo extends Component {
   updateWeatherCache(cityName) {
     const weatherCache = this.state.weatherCache;
     if (!weatherCache.has(cityName)) {
-      console.log(`Receive weather for city: ${cityName}`);
-      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${appId}`)
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error('Network response was not ok.');
-        })
+      WeatherService.getWeatherByCityName(cityName)
         .then(response => {
           weatherCache.set(cityName, response);
           this.setState({weatherCache: weatherCache});
         })
-        .catch(console.log);
     }
   }
 

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CityWeather from './CityWeather';
-import appId from '../config/openweathermap';
+import WeatherService from '../service/WeatherService';
 
 export default class SearchResult extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ export default class SearchResult extends Component {
     return (
       <div key={cityWeather.id} className="col s12 m6">
         <CityWeather weather={cityWeather}
-                     onMarkFavorite={function () {}}
+                     onMarkFavorite={function () {}} /* todo wtf?!*/
                      favorite={false}/>
       </div>
     );
@@ -47,18 +47,10 @@ export default class SearchResult extends Component {
 
   findCities(query) {
     if (query) {
-      console.log(`Search query: '${query}'`);
-      fetch(`https://api.openweathermap.org/data/2.5/find?q=${query}&type=like&sort=population&cnt=4&appid=${appId}`)
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error('Network response was not ok.');
-        })
+      WeatherService.findByQuery(query)
         .then(response => {
           this.setState({searchResult: response});
         })
-        .catch(console.log);
     }
   }
 }
