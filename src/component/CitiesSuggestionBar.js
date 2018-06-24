@@ -16,14 +16,13 @@ export default class CitiesSuggestionBar extends Component {
   }
 
   render() {
-    const cities = this.state.cities.map(cityName =>
-      <a key={cityName} onClick={this.props.onChooseCity}>{cityName}</a>
-    );
     return (
       <div className="container row">
         <div className="col s6 offset-s3 left-align">
           Weather in:
-          {cities}
+          {this.state.cities.map(cityName =>
+            <a key={cityName} onClick={this.props.onChooseCity}>{cityName}</a>
+          )}
         </div>
       </div>
     );
