@@ -1,0 +1,7 @@
+a {
+    padding: 0 1em;
+}
+
+a:hover {
+    cursor: pointer;
+}
